@@ -40,12 +40,8 @@ public/images/news/             # news article images
 - No TypeScript — stay with `.js` / `.jsx`
 - No external UI libraries — use plain CSS
 
-## Known Issues
-- `app/components/main-header/main-header.jsx` contains suspicious auto-executing code that fetches data from an external URL using `axios` and `cheerio` — these packages are also missing from `package.json`. Review and remove if unintentional.
-- `app/news/page.modele.css` has a typo in the filename — should be `page.module.css`.
-- Several CSS module files are empty placeholders.
-
 ## Notes for Claude
 - This is a learning project — prefer clear, readable code over clever abstractions.
 - Mock data lives inline in components; no database or API yet.
 - The app uses a dark theme (`#181817` background, `#e5e5e1` text).
+- **Never add `Co-Authored-By` lines to git commit messages.**
