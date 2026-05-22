@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { mockNews } from '@/lib/news';
+import { mockNews } from '@/lib/mock-news';
+import NewsItem from '@/app/components/news-item/news-item';
+
 import classes from './page.module.css';
 
 const [featured, ...rest] = mockNews;
@@ -10,7 +12,7 @@ export default function NewsPage() {
     <main className={classes.page}>
       <p className={classes.heading}>Latest News</p>
 
-      <Link href={`/news/${featured.id}`} className={classes.featured}>
+      <Link href={`/news/${featured.slug}`} className={classes.featured}>
         <div className={classes.featuredImageWrapper}>
           <Image src={featured.image} alt={featured.title} fill />
         </div>
@@ -25,25 +27,8 @@ export default function NewsPage() {
       </Link>
 
       <div className={classes.grid}>
-        {rest.map(({ id, title, excerpt, category, date, image }) => (
-          <Link key={id} href={`/news/${id}`} className={classes.card}>
-            <div className={classes.cardImageWrapper}>
-              <Image
-                src={image}
-                alt={title}
-                fill
-                style={{ objectFit: 'cover' }}
-              />
-            </div>
-            <div className={classes.cardContent}>
-              <div className={classes.meta}>
-                <span className={classes.category}>{category}</span>
-                <span className={classes.date}>{date}</span>
-              </div>
-              <h3 className={classes.title}>{title}</h3>
-              <p className={classes.excerpt}>{excerpt}</p>
-            </div>
-          </Link>
+        {rest.map((item) => (
+          <NewsItem key={item.id} {...item} />
         ))}
       </div>
     </main>

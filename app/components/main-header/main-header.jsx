@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import logo from "@/assets/logo.jpg";
+
 import classes from "./main-header.module.css";
 
 export default function MainHeader() {
@@ -17,6 +18,9 @@ export default function MainHeader() {
           </li>
           <li>
             <Link href="/news" className={classes.navLink}>News</Link>
+          </li>
+          <li>
+            <Link href="/archive" className={classes.navLink}>Archive</Link>
           </li>
         </ul>
       </nav>

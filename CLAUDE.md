@@ -25,7 +25,7 @@ app/
   components/main-header/       # site navigation header
   news/
     page.jsx                    # news list (mock data)
-    [newsSlug]/page.jsx         # dynamic single-news route
+    [id]/page.jsx               # dynamic single-news route
 assets/                         # logo image
 public/images/news/             # news article images
 ```
@@ -39,6 +39,23 @@ public/images/news/             # news article images
 - Dynamic routes go under `app/<section>/[slug]/page.jsx`
 - No TypeScript — stay with `.js` / `.jsx`
 - No external UI libraries — use plain CSS
+
+## Import Order
+Order imports in components as follows, with one blank line between each group:
+1. Hooks (React hooks, Next.js hooks)
+2. Components
+3. Styles
+
+```js
+import { useState } from "react";
+
+import MyComponent from "@/app/components/my-component/MyComponent";
+
+import classes from "./component.module.css";
+```
+
+## Change History
+After every change, append a short description to the current history file in `tasks/history/` (e.g., `tasks/history/2026-04-30-bugs-fixed.md`). Add a `##` heading for the topic and one or a few bullet points describing what changed.
 
 ## Notes for Claude
 - This is a learning project — prefer clear, readable code over clever abstractions.

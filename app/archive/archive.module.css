@@ -1,0 +1,94 @@
+.page {
+  width: 90%;
+  max-width: 60rem;
+  margin: 2rem auto;
+}
+
+.heading {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #bcbcb7;
+  margin: 0 0 2rem 0;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(229, 229, 225, 0.1);
+}
+
+.slots {
+  display: flex;
+  flex-direction: column;
+}
+
+.latest {
+  padding-bottom: 2rem;
+  padding-top: 2rem;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(229, 229, 225, 0.15) 10%,
+    rgba(229, 229, 225, 0.15) 90%,
+    transparent
+  );
+}
+
+.archive {
+  padding-top: 2rem;
+}
+
+/* ── Slot shared styles ── */
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.sectionHeading {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #7a7a75;
+  margin: 0 0 0.75rem 0;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(229, 229, 225, 0.08);
+}
+
+.navList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navLink {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #bcbcb7;
+  text-decoration: none;
+  padding: 0.3rem 0.75rem;
+  border-radius: 5px;
+  border: 1px solid rgba(229, 229, 225, 0.1);
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.navLink:hover {
+  color: #e5e5e1;
+  background-color: rgba(229, 229, 225, 0.08);
+  border-color: rgba(229, 229, 225, 0.2);
+}
