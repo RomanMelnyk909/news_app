@@ -1,8 +1,20 @@
-import Link from "next/link";
-import Image from "next/image";
-import logo from "@/assets/logo.jpg";
+import Link from 'next/link';
+import Image from 'next/image';
+import logo from '@/assets/logo.jpg';
 
-import classes from "./main-header.module.css";
+import classes from './main-header.module.css';
+import NavLink from '@/app/components/main-header/nav-link';
+
+const PATHNAMES = [
+  {
+    title: 'News',
+    href: '/news',
+  },
+  {
+    title: 'Archive',
+    href: '/archive',
+  },
+];
 
 export default function MainHeader() {
   return (
@@ -13,15 +25,11 @@ export default function MainHeader() {
       </Link>
       <nav className={classes.nav}>
         <ul>
-          <li>
-            <Link href="/" className={classes.navLink}>Home</Link>
-          </li>
-          <li>
-            <Link href="/news" className={classes.navLink}>News</Link>
-          </li>
-          <li>
-            <Link href="/archive" className={classes.navLink}>Archive</Link>
-          </li>
+          {PATHNAMES.map(({ title, href }) => (
+            <NavLink key={href} href={href}>
+              {title}
+            </NavLink>
+          ))}
         </ul>
       </nav>
     </header>

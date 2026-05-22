@@ -6,9 +6,9 @@ import { notFound } from 'next/navigation';
 import classes from './single-news.module.css';
 
 export default function SingleNewsPage({ params }) {
-  const article = getNewsBySlug(params.slug);
+  const newsItem = getNewsBySlug(params.slug);
 
-  if (!article) {
+  if (!newsItem) {
     notFound();
   }
 
@@ -18,20 +18,22 @@ export default function SingleNewsPage({ params }) {
         ← Back to News
       </Link>
       <div className={classes.meta}>
-        <span className={classes.category}>{article.category}</span>
-        <span className={classes.date}>{article.date}</span>
+        <span className={classes.category}>{newsItem.category}</span>
+        <span className={classes.date}>{newsItem.date}</span>
       </div>
-      <h1 className={classes.title}>{article.title}</h1>
+      <h1 className={classes.title}>{newsItem.title}</h1>
       <div className={classes.imageWrapper}>
-        <Image
-          src={article.image}
-          alt={article.title}
-          fill
-          style={{ objectFit: 'cover' }}
-        />
+        <Link href={`/news/${params.slug}/image`}>
+          <Image
+            src={newsItem.image}
+            alt={newsItem.title}
+            fill
+            style={{ objectFit: 'cover' }}
+          />
+        </Link>
       </div>
-      <p className={classes.excerpt}>{article.excerpt}</p>
-      <p className={classes.body}>{article.body}</p>
+      <p className={classes.excerpt}>{newsItem.excerpt}</p>
+      <p className={classes.body}>{newsItem.body}</p>
     </main>
   );
 }
