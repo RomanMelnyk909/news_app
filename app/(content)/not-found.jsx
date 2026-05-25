@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import classes from '@/app/news/[slug]/single-news.module.css';
+import classes from '@/app/(content)/news/[slug]/single-news.module.css';
 
 export default function NotFound() {
   return (
