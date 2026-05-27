@@ -1,18 +1,22 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import { mockNews } from '@/lib/mock-news';
-import NewsItem from '@/app/components/news-item/news-item';
+// import Link from 'next/link';
+// import Image from 'next/image';
+// import { mockNews } from '@/lib/mock-news';
+// import NewsItem from '@/app/components/news-item/news-item';
+import NewsList from '@/app/components/news-list/news-list';
 
 import classes from './page.module.css';
+import { getAllNews } from '@/lib/news-helpers';
 
-const [featured, ...rest] = mockNews;
+// const [featured, ...rest] = mockNews;
 
-export default function NewsPage() {
+export default async function NewsPage() {
+  const news = await getAllNews();
+
   return (
     <main className={classes.page}>
       <p className={classes.heading}>Latest News</p>
 
-      <Link href={`/news/${featured.slug}`} className={classes.featured}>
+      {/* <Link href={`/news/${featured.slug}`} className={classes.featured}>
         <div className={classes.featuredImageWrapper}>
           <Image src={featured.image} alt={featured.title} fill />
         </div>
@@ -24,12 +28,10 @@ export default function NewsPage() {
           <h2 className={classes.title}>{featured.title}</h2>
           <p className={classes.excerpt}>{featured.excerpt}</p>
         </div>
-      </Link>
+      </Link> */}
 
       <div className={classes.grid}>
-        {rest.map((item) => (
-          <NewsItem key={item.id} {...item} />
-        ))}
+        <NewsList news={news} />
       </div>
     </main>
   );

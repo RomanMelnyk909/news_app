@@ -72,3 +72,16 @@ Filled `app/news/[newsSlug]/single-news.module.css` with full article page style
 - Added fading gradient divider between latest and archive columns (vertical on desktop, horizontal on mobile)
 - Added subtle bottom border under the "News Archive" heading
 - Wrapped slots in `.latest` / `.archive` classes with padding on each side of the divider
+
+## API route and middleware
+- Added `app/api/route.jsx` — basic GET route handler returning a plain text response
+- Added `middleware.js` — request logger middleware scoped to the `/news` route using `NextResponse.next()`
+
+## news/page.jsx fetch fixes
+- Added missing `return` after error-branch in `fetchNews` so `response.json()` is never called on a failed response
+- Fixed import order to match project convention: hooks first, then components, then styles
+
+## getAllNews DB initialization
+- Added `fs.existsSync('data.db')` check at module level in `lib/news-helpers.js`
+- If `data.db` is missing: `createDb()` creates the file, the `news` table, and seeds it with all `mockNews` entries
+- If `data.db` exists: connects directly; `getAllNews()` returns rows via `SELECT * FROM news`
