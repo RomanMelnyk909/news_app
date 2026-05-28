@@ -12,7 +12,7 @@ export default function NewsItem({ slug, title, excerpt, category, date, image }
       <div className={classes.content}>
         <div className={classes.meta}>
           <span className={classes.category}>{category}</span>
-          <span className={classes.date}>{date}</span>
+          <span className={classes.date}>{new Date(date + 'T00:00:00').toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
         </div>
         <h3 className={classes.title}>{title}</h3>
         <p className={classes.excerpt}>{excerpt}</p>

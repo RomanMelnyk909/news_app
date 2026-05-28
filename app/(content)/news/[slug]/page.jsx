@@ -1,12 +1,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { getNewsBySlug } from '@/lib/mock-news';
 import { notFound } from 'next/navigation';
 
 import classes from './single-news.module.css';
+import { getNewsItem } from '@/lib/news-helpers';
 
-export default function SingleNewsPage({ params }) {
-  const newsItem = getNewsBySlug(params.slug);
+export default async function SingleNewsPage({ params }) {
+  const newsItem =  await getNewsItem(params.slug);
 
   if (!newsItem) {
     notFound();
@@ -19,7 +19,7 @@ export default function SingleNewsPage({ params }) {
       </Link>
       <div className={classes.meta}>
         <span className={classes.category}>{newsItem.category}</span>
-        <span className={classes.date}>{newsItem.date}</span>
+        <span className={classes.date}>{new Date(newsItem.date + 'T00:00:00').toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
       </div>
       <h1 className={classes.title}>{newsItem.title}</h1>
       <div className={classes.imageWrapper}>

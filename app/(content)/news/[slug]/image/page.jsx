@@ -1,12 +1,10 @@
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 
-import { getNewsBySlug } from '@/lib/mock-news';
+import { getNewsItem } from '@/lib/news-helpers';
 
-export default function ImagePage({ params }) {
-  const newsItemSlug = params.slug;
-
-  const newsItem = getNewsBySlug(newsItemSlug);
+export default async function ImagePage({ params }) {
+  const newsItem = await getNewsItem(params.slug);
 
   if (!newsItem) {
     notFound();

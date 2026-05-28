@@ -85,3 +85,12 @@ Filled `app/news/[newsSlug]/single-news.module.css` with full article page style
 - Added `fs.existsSync('data.db')` check at module level in `lib/news-helpers.js`
 - If `data.db` is missing: `createDb()` creates the file, the `news` table, and seeds it with all `mockNews` entries
 - If `data.db` exists: connects directly; `getAllNews()` returns rows via `SELECT * FROM news`
+
+## Fix archive filter "Invalid filter" error
+- When a year was selected but no month, `links` remained `availableYears`, so nav hrefs became `/archive/2026/2025` etc. — feeding a year as `selectedMonth` which failed validation
+- Fixed: `links = getAvailableNewsMonths(selectedYear)` when only a year is selected; `links = []` when both are selected
+
+## Fix date storage format
+- Changed all dates in `lib/mock-news.js` from human-readable (`Apr 30, 2026`) to ISO format (`2026-04-30`) so SQLite's `strftime` works correctly
+- Migrated existing `data.db` rows to ISO format — `getAvailableNewsYears`, `getAvailableNewsMonths`, `getNewsForYear`, `getNewsForYearAndMonth` now return correct results
+- Updated `NewsItem` and `SingleNewsPage` to format ISO dates for display using `toLocaleDateString`; appending `T00:00:00` prevents UTC timezone offset from shifting the displayed date

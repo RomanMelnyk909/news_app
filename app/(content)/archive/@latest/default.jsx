@@ -2,8 +2,8 @@ import { getLatestNews } from '@/lib/news-helpers';
 import classes from './latest.module.css';
 import NewsList from '@/app/components/news-list/news-list';
 
-export default function LatestNewsPage() {
-  const latestNews = getLatestNews();
+export default async function LatestNewsPage() {
+  const latestNews = await getLatestNews();
 
   return (
     <div className={classes.section}>
